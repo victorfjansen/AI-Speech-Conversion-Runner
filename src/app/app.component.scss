@@ -1,0 +1,32 @@
+.transcribe-application {
+    overflow-y: auto;
+    padding-block: 2rem;
+    width: 100vw;
+    height: 100vh;
+
+    &__card {
+        width: 40rem;
+        max-width: 90%;
+        padding: 2rem;
+        border: 1px solid #c1c1c1;
+        border-radius: 2px;
+        min-height: 350px;
+        overflow-y: auto;
+    }
+
+    &__text-card {
+        width: 40rem;
+        max-width: 90%;
+        padding: 2rem;
+        border: 1px solid #c1c1c1;
+        border-radius: 2px;
+        max-height: 300px;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    &__reset-button {
+        width: 40rem;
+        max-width: 90%;
+    }
+}

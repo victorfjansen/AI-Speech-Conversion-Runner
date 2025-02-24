@@ -1,0 +1,76 @@
+<div
+  class="transcribe-application"
+  nz-flex
+  nzJustify="center"
+  nzAlign="center"
+  [nzVertical]="true"
+  [nzGap]="20"
+>
+  <div
+    class="transcribe-application__card"
+    nz-flex
+    nzJustify="center"
+    [nzGap]="80"
+  >
+    <div nz-flex [nzVertical]="true" [nzGap]="'large'" nzJustify="center">
+      <h2 nz-flex nzJustify="center">
+        Transcribe your audio - Run AI Model in your Browser
+      </h2>
+
+      <div>
+        <p>Select your model:</p>
+        <nz-radio-group #modelGroup [(ngModel)]="currentModel">
+          <label nz-radio-button [nzValue]="availableModels.WHISPER_LARGE">Large V3 Turbo</label>
+          <label nz-radio-button [nzValue]="availableModels.WHISPER_BASE">Base</label>
+          <label nz-radio-button [nzValue]="availableModels.WHISPER_TINY">Tiny</label>
+        </nz-radio-group>
+      </div>
+
+      <div class="upload" >
+        <p>Upload your audio file:</p>
+        <nz-upload
+          nzAccept="audio/*"
+          [nzShowButton]="fileList.length < 1"
+          [nzMultiple]="false"
+          [(nzFileList)]="fileList"
+          [nzBeforeUpload]="beforeUpload"
+        >
+          <button nz-button [disabled]="isProcessing">
+            <nz-icon nzType="upload" />
+            Upload your audio!
+          </button>
+        </nz-upload>
+      </div>
+      <button
+        nz-button
+        nzType="primary"
+        [disabled]="!file"
+        (click)="startTranscription()"
+        [nzLoading]="isProcessing"
+      >
+        Transcribe it!
+      </button>
+    </div>
+  </div>
+
+  @if(transcription) {
+  <div
+    class="transcribe-application__text-card"
+    nz-flex
+    nzJustify="start"
+    [nzVertical]="true"
+    [nzGap]="10"
+  >
+    <p>{{ transcription }}</p>
+  </div>
+  <button
+    (click)="resetAll()"
+    nz-button
+    nzType="primary"
+    nzDanger
+    class="transcribe-application__reset-button"
+  >
+    reset
+  </button>
+  }
+</div>
